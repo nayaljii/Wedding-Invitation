@@ -11,10 +11,10 @@
   const heroGreeting = document.getElementById('heroGreeting');
   if(guestName){
     envGuestText.textContent = guestName + ' जी, आपके लिए एक निमंत्रण है';
-    heroGreeting.textContent = 'प्रिय ' + guestName + ', सादर आमंत्रित हैं';
+    heroGreeting.textContent = 'प्रिय ' + guestName + ', आप सादर आमंत्रित हैं';
   } else {
     envGuestText.textContent = 'आपके लिए एक निमंत्रण है';
-    heroGreeting.textContent = 'सादर आमंत्रित हैं';
+    heroGreeting.textContent = 'आप सादर आमंत्रित हैं';
   }
 
   /* ---------------- Floating gold flecks in hero ---------------- */
@@ -121,7 +121,7 @@
   });
 
   /* ---------------- Countdown ---------------- */
-  const weddingDate = new Date("2026-12-12T19:00:00").getTime();
+  const weddingDate = new Date("2026-11-10T12:00:00").getTime();
   function updateCountdown(){
     const diff = weddingDate - Date.now();
     const cd = document.getElementById('countdown');
@@ -154,7 +154,7 @@
       "BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT",
       "SUMMARY:Vishal & Pihu - Wedding Ceremony",
       "DTSTART:"+start, "DTEND:"+end,
-      "LOCATION:The Grand Palace Lawns, Amer Road, Jaipur, Rajasthan",
+      "LOCATION:डोगरा निवास, Harsan, Bazpur, Uttarakhand 262401",
       "DESCRIPTION:Aapko Vishal aur Pihu ki shadi mein sadar aamantrit kiya jata hai.",
       "END:VEVENT","END:VCALENDAR"
     ].join("\r\n");
