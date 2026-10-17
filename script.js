@@ -121,7 +121,7 @@
   });
 
   /* ---------------- Countdown ---------------- */
-  const weddingDate = new Date("2026-11-10T12:00:00").getTime();
+  const weddingDate = new Date("2026-11-10T19:00:00").getTime();
   function updateCountdown(){
     const diff = weddingDate - Date.now();
     const cd = document.getElementById('countdown');
@@ -148,8 +148,8 @@
 
   /* ---------------- Add to Calendar (.ics generation) ---------------- */
   document.getElementById('addCalBtn').addEventListener('click', function(){
-    const start = "20261212T190000";
-    const end   = "20261212T230000";
+    const start = "20261110T190000Z"; // 10 Nov 2026, 7:00 PM IST
+    const end = "20261110T220000Z";   // 10 Nov 2026, 10:00 PM IST
     const ics = [
       "BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT",
       "SUMMARY:Vishal & Pihu - Wedding Ceremony",
