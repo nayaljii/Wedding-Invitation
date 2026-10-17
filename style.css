@@ -330,7 +330,7 @@ footer .small{font-size:.75rem;opacity:.7;margin-top:20px;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width:640px){
-  #site-nav a:nth-child(n+4){display:none;}
+  #site-nav a:nth-child(n+4)
   .story-grid{grid-template-columns:1fr;}
   .t-item{grid-template-columns:30px 1fr;}
   .t-item:nth-child(odd) .t-card,.t-item:nth-child(even) .t-card{grid-column:2;text-align:left;}
