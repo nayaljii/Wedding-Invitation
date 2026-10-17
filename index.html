@@ -195,9 +195,24 @@
     <div class="venue-box">
       <h3>The Grand Palace Lawns</h3>
       <p>Amer Road, Near City Palace, Jaipur, Rajasthan 302002</p>
-      <a class="btn btn-solid map-btn" href="https://maps.google.com/?q=The+Grand+Palace+Lawns+Amer+Road+Jaipur" target="_blank" rel="noopener">Get Directions</a>
+      
+      <!-- Interactive Live Google Map -->
+      <div style="margin: 24px auto; max-width: 100%; border-radius: 8px; overflow: hidden; border: 2px solid var(--gold-300); box-shadow: 0 8px 24px rgba(74,20,32,0.1);">
+        <iframe 
+          src="https://maps.google.com/maps?q=Amer+Road+Near+City+Palace+Jaipur+Rajasthan&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="280" 
+          style="border:0; display:block;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <a class="btn btn-solid map-btn" href="https://maps.google.com/?q=Amer+Road+Near+City+Palace+Jaipur" target="_blank" rel="noopener">Get Directions on Phone</a>
+      
       <div class="qr-box">
-        <img id="qrImg" width="150" height="150" alt="Venue QR code">
+        <img id="qrImg" width="140" height="140" alt="Venue QR code">
         <span>Scan karke direct venue location kholen</span>
       </div>
     </div>
