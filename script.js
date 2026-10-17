@@ -29,22 +29,55 @@
     flecksHost.appendChild(s);
   }
 
+  /* ---------------- Background Music Logic ---------------- */
+  const weddingMusic = document.getElementById('weddingMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicIcon = document.getElementById('musicIcon');
+
+  function startMusic() {
+    if(weddingMusic && weddingMusic.paused) {
+      weddingMusic.play().then(() => {
+        musicIcon.textContent = '🎵';
+      }).catch(err => {
+        console.log("Audio autoplay prevented by browser:", err);
+      });
+    }
+  }
+
+  if(musicToggle) {
+    musicToggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(!weddingMusic) return;
+      if(weddingMusic.paused) {
+        weddingMusic.play();
+        musicIcon.textContent = '🎵';
+      } else {
+        weddingMusic.pause();
+        musicIcon.textContent = '🔇';
+      }
+    });
+  }
+
   /* ---------------- Envelope open logic ---------------- */
   const envelopeScreen = document.getElementById('envelope-screen');
   const mainContent = document.getElementById('main-content');
   envelopeScreen.addEventListener('click', function(){
     if(envelopeScreen.classList.contains('opening')) return;
+    
+    // Envelope click par gaana start hoga
+    startMusic();
+
     envelopeScreen.classList.add('opening');
     mainContent.style.display = 'block';
     setTimeout(function(){
       envelopeScreen.classList.add('hidden');
       document.body.classList.remove('locked');
       window.scrollTo({top:0, behavior:'instant'});
-      initScrollObservers(); // start nav + reveal tracking only once content is visible
+      initScrollObservers();
     }, 850);
   });
 
-  /* ---------------- Sticky nav: background on scroll + active link ---------------- */
+  /* ---------------- Sticky nav ---------------- */
   const nav = document.getElementById('site-nav');
   const navLinks = Array.from(nav.querySelectorAll('a'));
   function onScrollNav(){
@@ -54,7 +87,6 @@
   window.addEventListener('scroll', onScrollNav, {passive:true});
 
   function initScrollObservers(){
-    // Active section highlight
     const sectionIds = navLinks.map(a => a.dataset.target);
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
@@ -68,7 +100,6 @@
     }, {rootMargin: "-45% 0px -50% 0px", threshold: 0});
     sections.forEach(sec => navObserver.observe(sec));
 
-    // Reveal-on-scroll animation
     const revealObserver = new IntersectionObserver(function(entries, obs){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
@@ -130,7 +161,7 @@
     const blob = new Blob([ics], {type:"text/calendar"});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = "Vishal-Pihu-wedding.ics";
+    a.href = url; a.download = "vishal-pihu-wedding.ics";
     document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(url);
     showToast("Calendar file download ho gayi!");
@@ -154,19 +185,33 @@
 
   /* ---------------- Gallery lightbox ---------------- */
   const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
   const lbFill = document.getElementById('lbFill');
   const lbCaption = document.getElementById('lbCaption');
+
   document.querySelectorAll('.g-frame').forEach(function(frame){
     frame.addEventListener('click', function(){
+      const img = frame.querySelector('.g-img');
       const fillEl = frame.querySelector('.g-fill');
-      lbFill.style.background = getComputedStyle(fillEl).backgroundImage;
+
+      if(img && img.style.display !== 'none' && img.getAttribute('src')) {
+        lbImg.src = img.src;
+        lbImg.style.display = 'block';
+        lbFill.style.display = 'none';
+      } else {
+        lbImg.style.display = 'none';
+        lbFill.style.display = 'block';
+        lbFill.style.background = getComputedStyle(fillEl).backgroundImage;
+      }
+
       lbCaption.textContent = frame.dataset.caption || '';
       lightbox.classList.add('open');
     });
   });
+
   function closeLightbox(){ lightbox.classList.remove('open'); }
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
-  }
-)();
+
+})();
