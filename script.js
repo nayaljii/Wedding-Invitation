@@ -1,5 +1,5 @@
 /* =========================================================
-   ANANYA & ADITYA — WEDDING INVITATION
+   Vishal & Pihu — WEDDING INVITATION
    All interactive logic
    ========================================================= */
 (function(){
@@ -121,16 +121,16 @@
     const end   = "20261212T230000";
     const ics = [
       "BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT",
-      "SUMMARY:Ananya & Aditya - Wedding Ceremony",
+      "SUMMARY:Vishal & Pihu - Wedding Ceremony",
       "DTSTART:"+start, "DTEND:"+end,
       "LOCATION:The Grand Palace Lawns, Amer Road, Jaipur, Rajasthan",
-      "DESCRIPTION:Aapko Ananya aur Aditya ki shadi mein sadar aamantrit kiya jata hai.",
+      "DESCRIPTION:Aapko Vishal aur Pihu ki shadi mein sadar aamantrit kiya jata hai.",
       "END:VEVENT","END:VCALENDAR"
     ].join("\r\n");
     const blob = new Blob([ics], {type:"text/calendar"});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = "ananya-aditya-wedding.ics";
+    a.href = url; a.download = "Vishal-Pihu-wedding.ics";
     document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(url);
     showToast("Calendar file download ho gayi!");
@@ -168,87 +168,5 @@
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
-
-  /* ---------------- RSVP logic ---------------- */
-  const responses = [];
-  const rsvpForm = document.getElementById('rsvpForm');
-  const phoneInput = document.getElementById('phone');
-
-  function validatePhone(v){ return /^[0-9]{10}$/.test(v.replace(/\s+/g,'')); }
-
-  function renderGuestList(){
-    const list = document.getElementById('guestList');
-    if(responses.length === 0){
-      list.innerHTML = "<li class='empty'>अभी तक कोई RSVP नहीं आया</li>";
-    } else {
-      list.innerHTML = responses.map(function(r){
-        const label = r.attend === 'yes' ? 'आ रहे हैं' : (r.attend === 'maybe' ? 'शायद' : 'नहीं आ पाएंगे');
-        return "<li><span>"+r.name+"</span><span class='badge "+r.attend+"'>"+label+"</span></li>";
-      }).join('');
-    }
-    const confirmed = responses.filter(r => r.attend === 'yes')
-                                .reduce((sum,r) => sum + (r.guests >= 5 ? 5 : r.guests), 0);
-    const maybeCount = responses.filter(r => r.attend === 'maybe').length;
-    document.getElementById('statResponses').textContent = responses.length;
-    document.getElementById('statConfirmed').textContent = confirmed;
-    document.getElementById('statMaybe').textContent = maybeCount;
   }
-
-  rsvpForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = phoneInput.value.trim();
-    const guests = parseInt(document.getElementById('guests').value, 10);
-    const attend = document.getElementById('attend').value;
-
-    let valid = true;
-    if(name.length < 2){
-      document.getElementById('name').classList.add('error');
-      document.getElementById('err-name').style.display = 'block';
-      valid = false;
-    } else {
-      document.getElementById('name').classList.remove('error');
-      document.getElementById('err-name').style.display = 'none';
-    }
-    if(!validatePhone(phone)){
-      phoneInput.classList.add('error');
-      document.getElementById('err-phone').style.display = 'block';
-      valid = false;
-    } else {
-      phoneInput.classList.remove('error');
-      document.getElementById('err-phone').style.display = 'none';
-    }
-    if(!valid) return;
-
-    responses.push({name, phone, guests, attend});
-    renderGuestList();
-    rsvpForm.reset();
-    showToast("Dhanyavaad " + name + "! Aapka RSVP mil gaya.");
-  });
-
-  /* ---------------- Wishes wall logic ---------------- */
-  const wishes = [];
-  const wishForm = document.getElementById('wishForm');
-  function renderWishes(){
-    const wl = document.getElementById('wishList');
-    if(wishes.length === 0){
-      wl.innerHTML = "<p style='text-align:center;color:#a08a72;font-style:italic;'>सबसे पहले शुभकामना देने वाले आप बनें</p>";
-      return;
-    }
-    wl.innerHTML = wishes.slice().reverse().map(function(w){
-      return "<div class='wish-card'><div class='wn'>"+w.name+"</div><div class='wm'>"+w.msg+"</div><div class='wt'>"+w.time+"</div></div>";
-    }).join('');
-  }
-  wishForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const n = document.getElementById('wishName').value.trim();
-    const m = document.getElementById('wishMsg').value.trim();
-    if(!n || !m) return;
-    wishes.push({name:n, msg:m, time: new Date().toLocaleString('hi-IN', {hour:'2-digit', minute:'2-digit', day:'2-digit', month:'short'})});
-    renderWishes();
-    wishForm.reset();
-  });
-  renderWishes();
-  renderGuestList();
-
-})();
+)();

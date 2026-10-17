@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ananya &amp; Aditya — Wedding Invitation</title>
+<title>Vishal &amp; Pihu — Wedding Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -28,7 +28,6 @@
   <a href="#events" data-target="events">Events</a>
   <a href="#gallery" data-target="gallery">Gallery</a>
   <a href="#venue" data-target="venue">Venue</a>
-  <a href="#rsvp" data-target="rsvp">RSVP</a>
 </nav>
 
 <!-- ================= MAIN CONTENT ================= -->
@@ -52,7 +51,7 @@
 
   <div class="eyebrow">हम शादी कर रहे हैं</div>
   <div class="greeting" id="heroGreeting"></div>
-  <h1>Ananya<span class="amp">&amp;</span>Aditya</h1>
+  <h1>Vishal<span class="amp">&amp;</span>Pihu</h1>
   <p class="sub">दोनों परिवारों की ओर से, आपको हमारी शादी में शामिल होने का सप्रेम निमंत्रण</p>
   <div class="date-line">12 December 2026 · Jaipur</div>
   <div class="hero-actions">
@@ -80,8 +79,8 @@
     <p class="section-kicker">दूल्हा और दुल्हन</p>
     <h2 class="section-title">The Couple</h2>
     <div class="story-grid">
-      <div class="story-card"><div class="avatar-ring"><span>A</span></div><h3>Ananya Sharma</h3><div class="role">दुल्हन</div><p>श्री राजेश शर्मा एवं श्रीमती नीता शर्मा की सुपुत्री</p></div>
-      <div class="story-card"><div class="avatar-ring"><span>A</span></div><h3>Aditya Verma</h3><div class="role">दूल्हा</div><p>श्री सुनील वर्मा एवं श्रीमती अंजलि वर्मा के सुपुत्र</p></div>
+      <div class="story-card"><div class="avatar-ring"><span>A</span></div><h3>Vishal Sharma</h3><div class="role">दुल्हन</div><p>श्री राजेश शर्मा एवं श्रीमती नीता शर्मा की सुपुत्री</p></div>
+      <div class="story-card"><div class="avatar-ring"><span>A</span></div><h3>Pihu Verma</h3><div class="role">दूल्हा</div><p>श्री सुनील वर्मा एवं श्रीमती अंजलि वर्मा के सुपुत्र</p></div>
     </div>
   </div>
 </section>
@@ -144,71 +143,11 @@
   </div>
 </section>
 
-<section id="rsvp" style="background:var(--ivory-100);">
-  <div class="wrap reveal">
-    <p class="section-kicker">अपनी उपस्थिति दर्ज करें</p>
-    <h2 class="section-title">RSVP</h2>
-
-    <form class="rsvp-form" id="rsvpForm" novalidate>
-      <div class="row-2">
-        <div>
-          <label for="name">आपका नाम</label>
-          <input type="text" id="name" placeholder="Full name">
-          <div class="field-error" id="err-name">कृपया अपना नाम लिखें</div>
-        </div>
-        <div>
-          <label for="guests">कितने मेहमान आएंगे</label>
-          <select id="guests"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5+</option></select>
-        </div>
-      </div>
-      <div class="row-2">
-        <div>
-          <label for="phone">फ़ोन नंबर</label>
-          <input type="tel" id="phone" placeholder="10-digit mobile number">
-          <div class="field-error" id="err-phone">सही 10-digit फ़ोन नंबर डालें</div>
-        </div>
-        <div>
-          <label for="attend">क्या आप आ रहे हैं?</label>
-          <select id="attend">
-            <option value="yes">हां, बिल्कुल आऊंगा/आऊंगी</option>
-            <option value="maybe">शायद</option>
-            <option value="no">माफ़ी चाहते हैं, नहीं आ पाएंगे</option>
-          </select>
-        </div>
-      </div>
-      <button type="submit" class="rsvp-submit">RSVP भेजें</button>
-      <p class="rsvp-note">यह demo form है — chahe to isse Google Form ya apne WhatsApp number se connect kiya ja sakta hai.</p>
-    </form>
-
-    <div class="live-panel">
-      <div class="stat-row">
-        <div class="stat"><div class="n" id="statResponses">0</div><div class="l">RSVP RECEIVED</div></div>
-        <div class="stat"><div class="n" id="statConfirmed">0</div><div class="l">CONFIRMED GUESTS</div></div>
-        <div class="stat"><div class="n" id="statMaybe">0</div><div class="l">MAYBE</div></div>
-      </div>
-      <ul id="guestList"><li class="empty">अभी तक कोई RSVP नहीं आया</li></ul>
-    </div>
-  </div>
-</section>
-
-<section id="wishes">
-  <div class="wrap reveal">
-    <p class="section-kicker">आशीर्वाद और शुभकामनाएं</p>
-    <h2 class="section-title">Wishes Wall</h2>
-    <form class="wish-form" id="wishForm">
-      <input type="text" id="wishName" placeholder="आपका नाम" required>
-      <input type="text" id="wishMsg" placeholder="अपना संदेश लिखें..." required>
-      <button type="submit">भेजें</button>
-    </form>
-    <div id="wishList"></div>
-  </div>
-</section>
-
 <footer>
-  <div class="fam">Sharma &amp; Verma Families</div>
+  <div class="fam">Dogra &amp; Dogra Families</div>
   <p>आपकी उपस्थिति ही हमारे लिए सबसे बड़ा आशीर्वाद होगी</p>
-  <div class="hashtag">#AnanyaWedsAditya</div>
-  <div class="small">Made with love · Ananya &amp; Aditya · 2026</div>
+  <div class="hashtag">#VishalWedsPihu</div>
+  <div class="small">Made with love · Vishal &amp; Pihu · 2026</div>
 </footer>
 
 </div><!-- /main-content -->
