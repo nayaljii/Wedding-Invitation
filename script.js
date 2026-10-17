@@ -179,9 +179,9 @@
   });
 
   /* ---------------- QR code for venue ---------------- */
-  const venueQuery = encodeURIComponent("The Grand Palace Lawns, Amer Road, Jaipur, Rajasthan 302002");
+  const directMapLink = encodeURIComponent("https://maps.app.goo.gl/zbWob3z3Wm1TJcJD8");
   document.getElementById('qrImg').src =
-    "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=" + venueQuery;
+    "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + directMapLink;
 
   /* ---------------- Gallery lightbox ---------------- */
   const lightbox = document.getElementById('lightbox');
